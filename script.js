@@ -2,7 +2,7 @@ let n = 4;
 let A = [];
 let M = [];
 let YaddasSekil = [];
-let Y = [0,0,0];
+let Y = [0, 0, 0];
 Massiv();
 Tbl();
 setTimeout(Cevir, 1000);
@@ -50,41 +50,50 @@ function Cevir() {
 function Bas(i, j) {
   M[i][j] = YaddasSekil[i][j];
   Tbl();
-  if(Y[2]==0){
-      Y[0] = i;
-      Y[1] = j;
-      Y[2] = M[i][j];
+  if (Y[2] == 0) {
+    Y[0] = i;
+    Y[1] = j;
+    Y[2] = M[i][j];
   }
-  else{
-      if(Y[2]!=M[i][j] || Y[0]==i && Y[1]==j){
-          M[i][j] = 0;
-          M[Y[0]][Y[1]] = 0;
-          setTimeout(Tbl,1000);
-      }
-      Y[2] = 0;
+  else {
+    if (Y[2] != M[i][j] || Y[0] == i && Y[1] == j) {
+      M[i][j] = 0;
+      M[Y[0]][Y[1]] = 0;
+      setTimeout(Tbl, 1000);
+    }
+    Y[2] = 0;
   }
-  setTimeout(Yoxla,1000);
+  setTimeout(Yoxla, 1000);
 }
 
 function Yoxla() {
-    let say = 0;
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        if(M[i][j] != 0){
-            say++;
-        }
+  let say = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (M[i][j] != 0) {
+        say++;
       }
     }
-    if(say==n*n){
-        alert("Uddun");
-    }
   }
-let timeleft = 50;
-let downloadTimer = setInterval(function(){
-  document.getElementById("timer").innerHTML = timeleft;
-  timeleft -= 1;
-  if(timeleft <= 0){
+  if (say == n * n) {
+    alert("Uddun");
+  }
+}
+let timeleft = 51;
+let downloadTimer = setInterval(function () {
+
+  timeleft--;
+  if (timeleft < 0) {
     clearInterval(downloadTimer);
     alert("Uduzdun")
+    let x = confirm("Yenidən oynamaq istəyiriniz?");
+    if(x){
+      location.reload();
+      return;
+    }
+    else{
+
+    }
   }
-}, 100);
+  document.getElementById("timer").innerHTML = timeleft;
+}, 1000);
